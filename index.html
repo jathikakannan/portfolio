@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <title>Jathika K | Data Science Portfolio</title>
+
+    <meta name="description" content="Portfolio of Jathika K, Final Year Student and Aspiring Data Scientist from Jaya Engineering College." />
+    <meta property="og:title" content="Jathika K | Data Science Portfolio" />
+    <meta property="og:description" content="Turning data into decisions." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-border: rgba(255, 255, 255, 0.12);
+        --text: #e6eaf2;
+        --muted: #b7c0d7;
+        --primary: #0ea5e9;
+        --primary-2: #22d3ee;
+        --accent: #a78bfa;
+        --card-glow: 0 10px 30px rgba(14, 165, 233, 0.25);
+        --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.2);
+        --ring: rgba(34, 211, 238, 0.55);
+      }
+      [data-theme="light"] {
+        --bg: #f7f9fd;
+        --panel: rgba(7, 11, 22, 0.05);
+        --panel-border: rgba(7, 11, 22, 0.06);
+        --text: #0b1020;
+        --muted: #3d4a68;
+        --card-glow: 0 10px 30px rgba(7, 11, 22, 0.08);
+        --shadow-soft: 0 8px 30px rgba(7, 11, 22, 0.08);
+        --ring: rgba(14, 165, 233, 0.55);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background: radial-gradient(1200px 600px at 10% -10%, rgba(34, 211, 238, 0.14), transparent 60%),
+                    radial-gradient(800px 400px at 90% 10%, rgba(167, 139, 250, 0.14), transparent 60%),
+                    linear-gradient(180deg, var(--bg), var(--bg));
+        background-size: 1200px 600px, 800px 400px, auto;
+        background-position: 10% -10%, 90% 10%, 0 0;
+        animation: auroraShift 22s ease-in-out infinite alternate;
+        line-height: 1.6;
+      }
+      @keyframes auroraShift {
+        0% { background-position: 10% -10%, 90% 10%, 0 0; }
+        50% { background-position: 40% -5%, 60% 15%, 0 0; }
+        100% { background-position: 80% -10%, 20% 10%, 0 0; }
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container { width: min(1100px, 92%); margin: 0 auto; }
+
+      /* Header */
+      header {
+        position: sticky; top: 0; z-index: 50;
+        backdrop-filter: saturate(150%) blur(8px);
+        background: linear-gradient(to bottom, rgba(7, 11, 22, 0.55), rgba(7, 11, 22, 0.15));
+        border-bottom: 1px solid var(--panel-border);
+      }
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        height: 64px; gap: 16px;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.5px; }
+      .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--primary-2)); box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15); }
+      .brand span { font-weight: 900; background: linear-gradient(45deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+      .nav-links { display: flex; gap: 18px; align-items: center; }
+      .nav-links a {
+        position: relative;
+        font-weight: 600; font-size: 0.95rem; color: var(--muted); padding: 8px 10px; border-radius: 10px; transition: 180ms ease;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute; left: 10px; right: 10px; bottom: 4px; height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; border-radius: 2px; opacity: 0.9;
+      }
+      .nav-links a.active, .nav-links a:hover { color: var(--text); background: var(--panel); }
+      .nav-links a.active::after, .nav-links a:hover::after { transform: scaleX(1); }
+
+      .theme-toggle { border: 1px solid var(--panel-border); background: var(--panel); color: var(--text); border-radius: 12px; padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: var(--shadow-soft); }
+      .theme-toggle:hover { outline: 2px solid var(--ring); }
+
+      .hamburger { display: none; border: 1px solid var(--panel-border); background: var(--panel); color: var(--text); border-radius: 10px; padding: 8px 12px; }
+
+      @media (max-width: 880px) {
+        .nav-links { display: none; }
+        .hamburger { display: inline-flex; }
+      }
+
+      /* Mobile sheet */
+      .sheet { position: fixed; inset: 0; background: rgba(7, 11, 22, 0.5); backdrop-filter: blur(4px); display: none; }
+      .sheet.open { display: block; }
+      .sheet-panel { position: absolute; right: 0; top: 0; height: 100%; width: min(86%, 360px); background: linear-gradient(180deg, rgba(7, 11, 22, 0.92), rgba(7, 11, 22, 0.86)); border-left: 1px solid var(--panel-border); padding: 18px; display: grid; grid-template-rows: auto 1fr auto; gap: 18px; }
+      .sheet-links { display: grid; gap: 6px; }
+      .sheet-links a { padding: 12px 14px; border-radius: 12px; color: var(--muted); font-weight: 600; }
+      .sheet-links a:hover, .sheet-links a.active { background: var(--panel); color: var(--text); }
+
+      /* Hero */
+      .hero { padding: 84px 0 40px; position: relative; overflow: hidden; }
+      .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center; }
+      @media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+
+      .badge { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 999px; color: var(--muted); font-weight: 600; font-size: 0.9rem; overflow: hidden; }
+      .badge::before { content: ""; position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-25deg); animation: shine 3.2s ease-in-out infinite; }
+      @keyframes shine { 0% { left: -30%; } 60% { left: 120%; } 100% { left: 120%; } }
+
+      .title { font-size: clamp(1.8rem, 2.4rem + 1.5vw, 3.2rem); line-height: 1.1; margin: 12px 0; font-weight: 900; }
+      .title .accent { background: linear-gradient(45deg, var(--primary), var(--primary-2)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 18px rgba(14,165,233,0.25); }
+      .subtitle { color: var(--muted); font-weight: 500; margin-bottom: 18px; }
+      .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+      .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px; font-weight: 700; border: 1px solid var(--panel-border); background: var(--panel); color: var(--text); box-shadow: var(--shadow-soft); transition: transform 180ms ease, box-shadow 220ms ease, background-position 220ms ease; }
+      .btn.primary { background: linear-gradient(90deg, var(--primary), var(--primary-2), var(--accent)); color: #071126; border: none; box-shadow: 0 8px 24px rgba(14,165,233,0.25); background-size: 200% 200%; animation: gradientIdle 8s ease infinite; }
+      .btn.primary:hover { animation: gradientHover 1.4s ease forwards; box-shadow: 0 12px 34px rgba(14,165,233,0.35); }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
+      @keyframes gradientIdle { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      @keyframes gradientHover { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+      .portrait {
+        position: relative; aspect-ratio: 1 / 1; border-radius: 24px; overflow: hidden; border: 1px solid var(--panel-border);
+        background: linear-gradient(180deg, rgba(14,165,233,0.15), rgba(167,139,250,0.15));
+        animation: float 7s ease-in-out infinite;
+        box-shadow: 0 20px 60px rgba(14,165,233,0.15);
+      }
+      .portrait::after { content: ""; position: absolute; inset: -4px; border-radius: 28px; pointer-events: none; background: radial-gradient(140px 90px at 20% 20%, rgba(34,211,238,0.18), transparent 60%), radial-gradient(120px 80px at 80% 80%, rgba(167,139,250,0.18), transparent 60%); filter: blur(12px); }
+      @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+      .portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05) contrast(1.05); }
+
+      /* Sections */
+      section { padding: 54px 0; }
+      .section-title { font-size: 1.6rem; font-weight: 900; margin: 0 0 18px; }
+      .section-desc { color: var(--muted); margin-bottom: 22px; }
+
+      /* Cards */
+      .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
+      .col-12 { grid-column: span 12; }
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 4; }
+      @media (max-width: 1000px) { .col-4 { grid-column: span 6; } }
+      @media (max-width: 700px) { .col-6, .col-4 { grid-column: span 12; } }
+
+      .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border: 1px solid var(--panel-border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow-soft); transition: transform 180ms ease, outline-color 200ms ease, box-shadow 180ms ease; }
+      .card:hover { outline: 2px solid var(--ring); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.25); }
+      .card-title { font-weight: 800; margin: 2px 0 8px; }
+      .tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+      .chip { padding: 6px 10px; border-radius: 12px; font-weight: 700; font-size: 0.8rem; color: var(--text); border: 1px solid var(--panel-border); background: var(--panel); }
+
+      /* Timeline (Education) */
+      .timeline { position: relative; padding-left: 22px; }
+      .timeline::before { content: ""; position: absolute; left: 9px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--primary), var(--accent)); opacity: 0.8; }
+      .timeline-item { position: relative; margin: 8px 0 18px; }
+      .timeline-item::before { content: ""; position: absolute; left: -2px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(45deg, var(--primary), var(--accent)); box-shadow: 0 0 0 4px rgba(14,165,233,0.15); }
+
+      /* Footer */
+      footer { border-top: 1px solid var(--panel-border); padding: 22px 0; color: var(--muted); }
+
+      /* Utility */
+      .muted { color: var(--muted); }
+      .right { margin-left: auto; }
+      .center { text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React, ReactDOM, Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script type="text/babel">
+      const { useEffect, useMemo, useState } = React;
+
+      // Data
+      const PROJECTS = [
+        {
+          title: 'Fake News Detection',
+          desc: 'Built a machine learning model to detect fake news articles using NLP preprocessing and supervised classification.',
+          tech: ['Python', 'Pandas', 'Scikit-learn', 'NLP', 'TF-IDF'],
+          link: 'https://github.com/yourusername/fake-news-detection'
+        },
+        {
+          title: 'Iris Flower Classification',
+          desc: 'Developed a classifier to predict iris species using scikit-learn with exploratory data analysis and evaluation.',
+          tech: ['Python', 'NumPy', 'Scikit-learn', 'Matplotlib'],
+          link: 'https://github.com/yourusername/iris-classification'
+        },
+        {
+          title: 'Exploratory Data Analysis (EDA) Toolkit',
+          desc: 'Reusable EDA notebooks and utilities to quickly profile datasets and visualize distributions and correlations.',
+          tech: ['Python', 'Pandas', 'Seaborn', 'Jupyter'],
+          link: 'https://github.com/yourusername/eda-toolkit'
+        }
+      ];
+
+      const SKILLS = [
+        { group: 'Programming', items: ['Python', 'JavaScript'] },
+        { group: 'Data Science', items: ['Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'] },
+        { group: 'Web', items: ['ReactJS', 'HTML', 'CSS'] },
+        { group: 'Version Control', items: ['Git', 'GitHub'] }
+      ];
+
+      function useTheme() {
+        const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+        useEffect(() => {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+        }, [theme]);
+        const toggle = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+        return { theme, toggle };
+      }
+
+      function useActiveSection(ids) {
+        const [active, setActive] = useState(ids[0]);
+        useEffect(() => {
+          const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) setActive(e.target.id);
+              });
+            },
+            { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 }
+          );
+          els.forEach((el) => io.observe(el));
+          return () => io.disconnect();
+        }, [ids.join(',')]);
+        return active;
+      }
+
+      const ExternalLink = ({ href, children }) => (
+        <a href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+      );
+
+      function Navbar({ active, onOpenSheet, theme, onToggleTheme }) {
+        const links = [
+          { id: 'home', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'projects', label: 'Projects' },
+          { id: 'education', label: 'Education' },
+          { id: 'skills', label: 'Skills' },
+          { id: 'contact', label: 'Contact' }
+        ];
+        return (
+          <header>
+            <div className="container nav">
+              <div className="brand">
+                <span className="dot" />
+                <span>Jathika K</span>
+              </div>
+              <nav className="nav-links">
+                {links.map(({ id, label }) => (
+                  <a key={id} className={active === id ? 'active' : ''} href={`#${id}`}>{label}</a>
+                ))}
+                <button className="theme-toggle" onClick={onToggleTheme} aria-label="Toggle theme">
+                  <i className={theme === 'dark' ? 'fa-solid fa-moon' : 'fa-regular fa-sun'} />
+                  <span>{theme === 'dark' ? 'Dark' : 'Light'}</span>
+                </button>
+              </nav>
+              <button className="hamburger" onClick={onOpenSheet} aria-label="Menu">
+                <i className="fa-solid fa-bars" />
+              </button>
+            </div>
+          </header>
+        );
+      }
+
+      function MobileSheet({ open, onClose, active, theme, onToggleTheme }) {
+        const links = [
+          { id: 'home', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'projects', label: 'Projects' },
+          { id: 'education', label: 'Education' },
+          { id: 'skills', label: 'Skills' },
+          { id: 'contact', label: 'Contact' }
+        ];
+        return (
+          <div className={open ? 'sheet open' : 'sheet'} onClick={onClose}>
+            <div className="sheet-panel" onClick={(e) => e.stopPropagation()}>
+              <div className="brand" style={{ padding: '6px 8px' }}>
+                <span className="dot" />
+                <span>Jathika K</span>
+              </div>
+              <div className="sheet-links">
+                {links.map(({ id, label }) => (
+                  <a key={id} href={`#${id}`} onClick={onClose} className={active === id ? 'active' : ''}>{label}</a>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button className="theme-toggle right" onClick={onToggleTheme} aria-label="Toggle theme">
+                  <i className={theme === 'dark' ? 'fa-solid fa-moon' : 'fa-regular fa-sun'} />
+                  <span>{theme === 'dark' ? 'Dark' : 'Light'} Mode</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const Tagline = () => (
+        <div className="badge" data-aos="fade-up">
+          <i className="fa-solid fa-database" />
+          Final Year Student | Aspiring Data Scientist
+        </div>
+      );
+
+      function Hero() {
+        return (
+          <section id="home" className="hero">
+            <div className="container hero-grid">
+              <div>
+                <Tagline />
+                <h1 className="title" data-aos="fade-up" data-aos-delay="50">
+                  Hi, I'm <span className="accent">Jathika&nbsp;K</span>
+                </h1>
+                <p className="subtitle" data-aos="fade-up" data-aos-delay="100">
+                  Turning data into decisions.
+                </p>
+                <div className="cta" data-aos="fade-up" data-aos-delay="150">
+                  <a className="btn primary" href="#projects">
+                    <i className="fa-solid fa-diagram-project" />
+                    View Projects
+                  </a>
+                  <a className="btn" href="resume/Jathika_K_Resume.pdf" download>
+                    <i className="fa-solid fa-file-arrow-down" />
+                    Download Resume
+                  </a>
+                  <a className="btn" href="#contact">
+                    <i className="fa-solid fa-envelope" />
+                    Contact
+                  </a>
+                </div>
+              </div>
+              <div data-aos="zoom-in" data-aos-delay="120">
+                <div className="portrait">
+                  <img alt="Profile" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=900&auto=format&fit=crop" />
+                </div>
+                <p className="muted" style={{ marginTop: 10, textAlign: 'center' }}>
+                  Tip: replace the photo with your own image URL.
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function About() {
+        return (
+          <section id="about">
+            <div className="container">
+              <h2 className="section-title" data-aos="fade-right">About Me</h2>
+              <p className="section-desc" data-aos="fade-right" data-aos-delay="60">
+                I'm Jathika K, a passionate data science student in my final year at Jaya Engineering College. I have a strong foundation in machine learning and data analysis, with hands-on internship experience in real-world problems such as fake news detection and iris flower classification.
+              </p>
+              <div className="grid">
+                <div className="col-6">
+                  <div className="card" data-aos="fade-up">
+                    <div className="card-title">What I Love</div>
+                    <p className="muted">Building ML solutions end-to-end: data wrangling, modeling, evaluation, and impactful visualization.</p>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="card" data-aos="fade-up" data-aos-delay="80">
+                    <div className="card-title">Current Focus</div>
+                    <p className="muted">Improving feature engineering and model interpretability, and building React dashboards for insights.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function ProjectCard({ p }) {
+        return (
+          <div className="card" data-aos="fade-up">
+            <div className="card-title">{p.title}</div>
+            <p className="muted">{p.desc}</p>
+            <div className="tech">
+              {p.tech.map((t) => (
+                <span key={t} className="chip">{t}</span>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+              {p.link && (
+                <ExternalLink href={p.link}>
+                  <span className="btn"><i className="fa-brands fa-github" /> Code</span>
+                </ExternalLink>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      function Projects() {
+        return (
+          <section id="projects">
+            <div className="container">
+              <h2 className="section-title" data-aos="fade-right">Internships & Projects</h2>
+              <p className="section-desc" data-aos="fade-right" data-aos-delay="60">Selected work showcasing my data science skills and interests.</p>
+              <div className="grid">
+                {PROJECTS.map((p, i) => (
+                  <div key={p.title} className="col-4"><ProjectCard p={p} /></div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function Education() {
+        return (
+          <section id="education">
+            <div className="container">
+              <h2 className="section-title" data-aos="fade-right">Education</h2>
+              <div className="card" data-aos="fade-up">
+                <div className="timeline">
+                  <div className="timeline-item">
+                    <h3 className="card-title">Jaya Engineering College</h3>
+                    <p className="muted">Final Year — B.E./B.Tech in Data Science</p>
+                    <p className="muted">Coursework: Machine Learning, Data Mining, Statistics, Data Visualization</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function Skills() {
+        return (
+          <section id="skills">
+            <div className="container">
+              <h2 className="section-title" data-aos="fade-right">Skills</h2>
+              <div className="grid">
+                {SKILLS.map((s) => (
+                  <div className="col-6" key={s.group}>
+                    <div className="card" data-aos="zoom-in">
+                      <div className="card-title">{s.group}</div>
+                      <div className="tech">
+                        {s.items.map((t) => (
+                          <span key={t} className="chip">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function Contact() {
+        return (
+          <section id="contact">
+            <div className="container">
+              <h2 className="section-title" data-aos="fade-right">Contact</h2>
+              <div className="card" data-aos="fade-up">
+                <div className="grid">
+                  <div className="col-6">
+                    <p className="muted">Email</p>
+                    <a className="btn" href="mailto:jathikak@example.com">
+                      <i className="fa-solid fa-envelope" /> jathikak@example.com
+                    </a>
+                  </div>
+                  <div className="col-6" style={{ display: 'flex', gap: 10, alignItems: 'start', flexWrap: 'wrap' }}>
+                    <p className="muted" style={{ width: '100%' }}>Profiles</p>
+                    <ExternalLink href="https://www.linkedin.com/">
+                      <span className="btn"><i className="fa-brands fa-linkedin" /> LinkedIn</span>
+                    </ExternalLink>
+                    <ExternalLink href="https://github.com/">
+                      <span className="btn"><i className="fa-brands fa-github" /> GitHub</span>
+                    </ExternalLink>
+                  </div>
+                </div>
+              </div>
+              <p className="muted" style={{ marginTop: 10 }}>
+                Resume: place your PDF at <code>resume/Jathika_K_Resume.pdf</code> to enable the download button above.
+              </p>
+            </div>
+          </section>
+        );
+      }
+
+      function Footer() {
+        return (
+          <footer>
+            <div className="container" style={{ display: 'flex', gap: 10, alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>© {new Date().getFullYear()} Jathika K</span>
+              <span className="muted">Built with React</span>
+            </div>
+          </footer>
+        );
+      }
+
+      function App() {
+        const { theme, toggle } = useTheme();
+        const [sheet, setSheet] = useState(false);
+        const sectionIds = useMemo(() => ['home', 'about', 'projects', 'education', 'skills', 'contact'], []);
+        const active = useActiveSection(sectionIds);
+
+        useEffect(() => {
+          AOS.init({ duration: 700, once: true, offset: 40 });
+        }, []);
+
+        return (
+          <>
+            <Navbar active={active} onOpenSheet={() => setSheet(true)} theme={theme} onToggleTheme={toggle} />
+            <MobileSheet open={sheet} onClose={() => setSheet(false)} active={active} theme={theme} onToggleTheme={toggle} />
+
+            <Hero />
+            <About />
+            <Projects />
+            <Education />
+            <Skills />
+            <Contact />
+            <Footer />
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
